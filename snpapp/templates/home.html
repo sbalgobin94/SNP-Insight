@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">Upload SNP File</h1>
+<form method="POST" action="/upload-snp" enctype="multipart/form-data">
+    <input type="file" name="file" required />
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Upload File</button>
+    </div>
+</form>
+
+<h2 align="center">Your SNP Annotations</h2>
+{% if user_snps %}
+    <ul class="list-group list-group-flush">
+        {% for snp in user_snps %}
+        <li class="list-group-item">
+            RSID: {{ snp.rsid }}, Genotype: {{ snp.genotype }} Gene: {{ snp.gene_name }}
+            <!-- Display more SNP information as needed -->
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
